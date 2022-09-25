@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { BsFillMoonFill, BsSun } from "react-icons/bs";
 import moment from 'moment';
-import Switch from './themeSwitch'
 import Loder from './loder2'
 import './css/style.css'
-import ReactSwitch from "react-switch"
 
 
 const TempApp = () => {
@@ -48,7 +47,8 @@ const TempApp = () => {
         <>
           <div className="button">
           {/* <ReactSwitch onChange={clickHandler} checked={isLit}/> */}
-          <Switch onChange={clickHandler} checked={isLit} />
+          {/* <Switch onChange={clickHandler} checked={isLit} /> */}
+          <button  type="button" className="btn" onClick={clickHandler}>{(!isLit) ? <BsFillMoonFill /> : <BsSun />}</button>
           </div>
           <div className={`container ${(isLit) ? "dark" : "lite"}`}>
             {(weatherData === null) ? null : (
