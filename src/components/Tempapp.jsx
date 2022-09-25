@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import './css/style.css'
 import axios from 'axios';
 import moment from 'moment';
+import Switch from './themeSwitch'
 import Loder from './loder2'
+import './css/style.css'
 import ReactSwitch from "react-switch"
 
-import ToggleButton from "react-theme-toggle-button";
-import "react-theme-toggle-button/dist/index.css";
-import { dark, light } from "@mui/material/styles/createPalette";
 
 const TempApp = () => {
 
@@ -48,10 +46,9 @@ const TempApp = () => {
         <Loder />
       ) : (
         <>
-
           <div className="button">
-          <ReactSwitch onChange={clickHandler} checked={isLit}/>
-          <ToggleButton  onChange={() =>     setLit(isLit => !isLit)} />
+          {/* <ReactSwitch onChange={clickHandler} checked={isLit}/> */}
+          <Switch onChange={clickHandler} checked={isLit} />
           </div>
           <div className={`container ${(isLit) ? "dark" : "lite"}`}>
             {(weatherData === null) ? null : (
