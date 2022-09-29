@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
 
 :root {
-  --gradient: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+  /* --gradient: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%); */
+  --gradient:  linear-gradient(135deg, #cc208e 10%, #6713d2 100%);
+  --background-color: #dfdddd;
+  --text-color: #000000;
+  --card-color:#ffffff;
 }
-
+html[data-theme='dark'] {
+  --background-color: #222224;
+  --text-color: #F7F8F8;
+  --card-color:#383838;
+  /* --gradient: linear-gradient( 135deg, #ec4629 10%, #e58751 100%); */
+   --gradient: linear-gradient( 135deg, #c21500 10%,  #ffc500 100%);
+}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -19,7 +29,7 @@ body {
   width: 100%;
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  background-color: #343d4b;
+  background-color: var(--background-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,33 +39,25 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+          transition: all 1s ease-out;
+ 
+          
 }
 
 .container {
 
   padding: 20px;
+  background-color: var(--card-color);
 
   border-radius: 25px;
   -webkit-box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
 
-  color: #ffffff;
+  color: var(--text-color);
   height: 420px;
  
 }
-.dark{
 
-  transition: background-color .5s ,color .5s;
-  background-color: #222831;
-  color: rgb(255, 255, 255);
-}
-
-.lite{
-  color: rgb(0, 0, 0);
-  background-color: #ffffff;
-  transition: background-color .5s , color .5s;
-  /* transition: color 1s; */
-}
 
 .weather-side {
   position: relative;
@@ -164,7 +166,12 @@ body {
 .today-info>div .value {
   float: right;
 }
-
+#btn {
+background-image: var(--gradient);
+border: none;
+border-radius: 20px;
+height: 43px;
+}
 .week-list {
   list-style-type: none;
   padding: 0;
@@ -258,3 +265,12 @@ body {
   width: auto;
   margin-right: 5px;
 }
+.lableLight{
+  color: rgb(255, 255, 255);
+}
+.lableDark{
+  color: black;
+}
+
+
+
