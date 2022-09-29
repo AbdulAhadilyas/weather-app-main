@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { BsFillMoonFill, BsSun } from "react-icons/bs";
-import moment from 'moment';
-import Loder from './loder2'
 import './css/style.css'
-
-
+import axios from 'axios';
+import moment from 'moment';
+import ToglleSwitch from './toggle'
+import Loder from './loder2'
 const TempApp = () => {
 
   const [city, setCity] = useState("")
@@ -19,23 +17,40 @@ const TempApp = () => {
   const getWeather = (e) => {
     e.preventDefault();
     console.log("I am click handler")
-    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=19d5d54edc4b4facbb9200032220109&q=${city}&days=14`)
+    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=62b47f359e2a423692192111222609&q=${city}&days=8&aqi=no&alerts=no`)
       .then(function (response) {
         console.log(response.data);
         setWeatherData(response.data)
       });
-
-
+     
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1700);
 
   };
 
   const clickHandler = () => {
     setLit(!isLit)
   }
+
+
+var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+if (storedTheme)
+    document.documentElement.setAttribute('data-theme', storedTheme)
+
+
+ function theme() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    var targetTheme = "light";
+
+    if (currentTheme === "light") {
+        targetTheme = "dark";
+    }
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+};
 
 
 
@@ -45,15 +60,18 @@ const TempApp = () => {
         <Loder />
       ) : (
         <>
-          <div className="button">
-          {/* <ReactSwitch onChange={clickHandler} checked={isLit}/> */}
-          {/* <Switch onChange={clickHandler} checked={isLit} /> */}
-          <button  type="button" className="btn" onClick={clickHandler}>{(!isLit) ? <BsFillMoonFill /> : <BsSun />}</button>
-          </div>
-          <div className={`container ${(isLit) ? "dark" : "lite"}`}>
+            <div className="btn">
+            
+             <ToglleSwitch sx={{ m: 2 }} onChange={theme} defaultChecked />
+             
+             <span className={`${(isLit) ? "lableLight" : "lableDark"}`}>Dark mode</span>
+             
+              </div>
+          <div className={`container`}>
             {(weatherData === null) ? null : (
               <>
                 <div className="weather-side">
+ 
                   <div className="weather-gradient" />
                   <div className="date-container">
                     <h2 className="date-dayname">{moment(weatherData.location.localtime).format('dddd')}</h2><span className="date-day">{moment(weatherData.location.localtime).format('MMM/D/YYYY')}
@@ -91,6 +109,17 @@ const TempApp = () => {
                       }°C</span></li>
                       <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[2].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[2].day.avgtemp_c)
                       }°C</span></li>
+
+                     <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[3].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[3].day.avgtemp_c)
+                      }°C</span></li>
+                    
+                    
+                      <li><i className="day-icon" data-feather="cloud" /><span className="day-name">{moment(weatherData.forecast.forecastday[4].date).format('ddd')}</span><span className="day-temp">  {Math.round(weatherData.forecast.forecastday[4].day.avgtemp_c)
+                      }°C </span></li>
+                      <li><i className="day-icon" data-feather="cloud-snow" /><span className="day-name">{moment(weatherData.forecast.forecastday[5].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[5].day.avgtemp_c)
+                      }°C</span></li>
+                      <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[6].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[6].day.avgtemp_c)
+                      }°C</span></li>
                       <div className="clear" />
                     </ul>
                   </div>
@@ -103,7 +132,7 @@ const TempApp = () => {
               <form onSubmit={
                 getWeather}>
                 <div className="location-container"><input className="location-button" type="search" name="" id="" onChange={(e) => { setCity(e.target.value) }} />
-                  <button className="btn btn-primary" type="submit"> Search</button>
+                  <button className="btn btn-primary" id="btn" type="submit" > Search</button>
                 </div>
               </form>
             </>
