@@ -17,7 +17,7 @@ const TempApp = () => {
   const getWeather = (e) => {
     e.preventDefault();
     console.log("I am click handler")
-    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=62b47f359e2a423692192111222609&q=${city}&days=8&aqi=no&alerts=no`)
+    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=41f59731c2cbf57a25b7a390a56a34fc&q=${city}&days=8&aqi=no&alerts=no`)
       .then(function (response) {
         console.log(response.data);
         setWeatherData(response.data)
