@@ -17,7 +17,7 @@ const TempApp = () => {
   const getWeather = (e) => {
     e.preventDefault();
     console.log("I am click handler")
-    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=41f59731c2cbf57a25b7a390a56a34fc&q=${city}&days=8&aqi=no&alerts=no`)
+    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=217ffd160b244dbb951144248220612&q=karachi`)
       .then(function (response) {
         console.log(response.data);
         setWeatherData(response.data)
@@ -109,17 +109,8 @@ if (storedTheme)
                       }°C</span></li>
                       <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[2].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[2].day.avgtemp_c)
                       }°C</span></li>
+                    
 
-                     <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[3].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[3].day.avgtemp_c)
-                      }°C</span></li>
-                    
-                    
-                      <li><i className="day-icon" data-feather="cloud" /><span className="day-name">{moment(weatherData.forecast.forecastday[4].date).format('ddd')}</span><span className="day-temp">  {Math.round(weatherData.forecast.forecastday[4].day.avgtemp_c)
-                      }°C </span></li>
-                      <li><i className="day-icon" data-feather="cloud-snow" /><span className="day-name">{moment(weatherData.forecast.forecastday[5].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[5].day.avgtemp_c)
-                      }°C</span></li>
-                      <li><i className="day-icon" data-feather="cloud-rain" /><span className="day-name">{moment(weatherData.forecast.forecastday[6].date).format('ddd')}</span><span className="day-temp">{Math.round(weatherData.forecast.forecastday[6].day.avgtemp_c)
-                      }°C</span></li>
                       <div className="clear" />
                     </ul>
                   </div>

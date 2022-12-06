@@ -1,1 +1,4 @@
-Assalam-u-Alaikum
+//open-weather api
+https://api.openweathermap.org/data/2.5/weather?q=pune&appid=050a25604fb0bf51202f16df812abd4c
+
+app:link: http://zubair-weather-app.surge.sh/
